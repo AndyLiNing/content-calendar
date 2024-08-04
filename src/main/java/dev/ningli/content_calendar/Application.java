@@ -21,6 +21,7 @@ public class Application {
 
 	private void test(){
 		Content b = new Content(1, "test");
+		System.out.println("test");
 		System.out.println(b);
 	}
 
