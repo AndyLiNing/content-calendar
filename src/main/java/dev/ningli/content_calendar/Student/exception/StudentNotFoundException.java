@@ -1,4 +1,4 @@
-package dev.ningli.content_calendar.Student.controller;
+package dev.ningli.content_calendar.Student.exception;
 
 public class StudentNotFoundException extends RuntimeException {
     public StudentNotFoundException(String message) {
