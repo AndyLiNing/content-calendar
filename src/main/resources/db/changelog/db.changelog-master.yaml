@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/1.0.0/create_and_init_employee_table.sql
