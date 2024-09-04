@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.service.annotation.GetExchange;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PostClientService {
 
@@ -12,8 +13,9 @@ public interface PostClientService {
 
 
     // comments?postId=1
+//    @GetExchange("/comments")
+//    List<Comment> getCommentPost(@RequestParam(name = "postId") Integer id);
+
     @GetExchange("/comments")
-    List<Comment> getCommentPost(@RequestParam(name = "postId") Integer id);
-
-
+    List<Comment> getCommentPost(@RequestParam Map<String, Integer> id);
 }
