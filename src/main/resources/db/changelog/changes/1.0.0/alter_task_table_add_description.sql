@@ -1,0 +1,2 @@
+ALTER TABLE task
+ADD description VARCHAR(255)

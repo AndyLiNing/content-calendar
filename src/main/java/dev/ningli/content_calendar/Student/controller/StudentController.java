@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.ningli.content_calendar.Student.entity.StudentRecord;
+import dev.ningli.content_calendar.Student.exception.StudentNotFoundException;
 import jakarta.annotation.PostConstruct;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
