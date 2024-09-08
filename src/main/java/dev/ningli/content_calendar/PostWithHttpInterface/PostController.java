@@ -1,15 +1,14 @@
-package dev.ningli.content_calendar.Httpinterface;
+package dev.ningli.content_calendar.PostWithHttpInterface;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
+
 @RestController
+@RequestMapping("/security")
 public class PostController {
 
     private final PostClientService postClientService;
@@ -32,5 +31,10 @@ public class PostController {
     @GetMapping("/comments")
     List<Comment> getCommentPostMap(@RequestParam Map<String, Integer> id) {
         return postClientService.getCommentPost(id);
+    }
+
+    @DeleteMapping("/comments/{id}")
+    void deletePostById(@PathVariable int id){
+        postClientService.deletePostById(id);
     }
 }

@@ -1,4 +1,4 @@
-package dev.ningli.content_calendar.Httpinterface;
+package dev.ningli.content_calendar.PostWithHttpInterface;
 
 
 import org.springframework.context.annotation.Bean;

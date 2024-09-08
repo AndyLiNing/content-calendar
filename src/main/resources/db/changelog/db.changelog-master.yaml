@@ -9,3 +9,19 @@ databaseChangeLog:
       file: db/changelog/changes/1.0.0/alter_set_task_description_default_value.sql
   - include:
       file: db/changelog/changes/1.0.0/insert_employees.sql
+  - include:
+      file: db/changelog/changes/1.0.0/create-user-table.sql
+  - include:
+      file: db/changelog/changes/1.0.0/create-authaurities-table.sql
+  - include:
+      file: db/changelog/changes/1.0.0/insert_users.sql
+  - include:
+      file: db/changelog/changes/1.0.0/insert_authaurities.sql
+  - include:
+      file: db/changelog/changes/1.0.0/create_members_table.sql
+  - include:
+      file: db/changelog/changes/1.0.0/create_roles_table.sql
+  - include:
+      file: db/changelog/changes/1.0.0/insert_members.sql
+  - include:
+      file: db/changelog/changes/1.0.0/insert_roles.sql
