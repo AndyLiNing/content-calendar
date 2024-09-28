@@ -1,4 +1,4 @@
-package dev.ningli.content_calendar.Student.profiles;
+package dev.ningli.content_calendar.Config.profiles;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
