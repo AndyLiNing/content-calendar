@@ -23,13 +23,33 @@ objectMapper.writeValue()
 ### 5, Java Optional container
 
 ### 6, Variable argument in JAVA
+https://www.baeldung.com/java-varargs
 Each method can only have one varargs parameter
 The varargs argument must be the last parameter
 ```agsl
     private void varargsMethod(int... args) {
 		for(Integer item : args) {
-			System.out.println( "item:" + item);
+			System.out.println(item);
 		}
 	}
 ```
+### 7, Deep dive into Spring boot AutoConfig 
+@Configuration(proxyBeanMethods = false) vs @AutoConfiguration => 
+Add in resources folder the "META-INF.spring/org.xxxx.imports" to auto config custom beans (GSON is a simple example)
 
+### 8, Static key word
+https://www.geeksforgeeks.org/static-keyword-java/
+- static variable
+- static block => to init the static variables before java loads the static class
+- static method
+- static class
+
+### 9, ".class"
+```agsl
+When you write .class after a class name, 
+it references the class literal - java.lang.Class object that represents information about a given class.
+
+For example, if your class is Print, 
+then Print.class is an object that represents the class Print on runtime. 
+It is the same object that is returned by the getClass() method of any (direct) instance of Print.
+```
