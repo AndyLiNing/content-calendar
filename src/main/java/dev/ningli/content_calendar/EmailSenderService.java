@@ -16,19 +16,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-
 @Service
-public class MyEmailSender {
+public class EmailSenderService {
 
-    private final Logger logger = LoggerFactory.getLogger(EmailSender.class);
+    private final Logger logger = LoggerFactory.getLogger(EmailSenderService.class);
+
     private final JavaMailSender javaMailSender;
 
-    private String[] images = {
+    private final String[] images = {
             "logo_bouygues_telecom",
             "logo_bouygues_telecom_footer",
             "picto_satisfait",
@@ -40,23 +39,22 @@ public class MyEmailSender {
             "facebook"
     };
 
-    public MyEmailSender(JavaMailSender javaMailSender) throws IOException {
+    public EmailSenderService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendWithAttachment(Email email) throws MessagingException, UnsupportedEncodingException {
+    public void send(Email email) throws MessagingException, UnsupportedEncodingException {
 
         MimeMultipart htmlMultipart = getMimeMultipart(email);
-        
+
         addAttachments(email, htmlMultipart);
 
-        MimeMessage mimeMessage = getMimeMessage(email, htmlMultipart);
+        MimeMessage mimeMessage = buildMimeMessage(email, htmlMultipart);
 
         javaMailSender.send(mimeMessage);
 
     }
-
-
+    
     private MimeMultipart getMimeMultipart(Email email) throws MessagingException {
 
         MimeMultipart htmlMultipart = new MimeMultipart("mixed");
@@ -82,7 +80,7 @@ public class MyEmailSender {
         }
     }
 
-    private MimeMessage getMimeMessage(Email email, MimeMultipart htmlMultipart) throws MessagingException, UnsupportedEncodingException {
+    private MimeMessage buildMimeMessage(Email email, MimeMultipart htmlMultipart) throws MessagingException, UnsupportedEncodingException {
         // Create a message with the specified information.
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
@@ -103,6 +101,7 @@ public class MyEmailSender {
         mimeMessage.setSubject(email.getSubject());
         mimeMessage.setContent(htmlMultipart);
         mimeMessage.setHeader("References", "<" + email.getId() + "@bouyguestelecom.cloud>");
+
         return mimeMessage;
     }
 
