@@ -25,3 +25,9 @@ public class LoadCustomConfigService {
         this.type = type;
     }
 }
+// Note look at "GsonAutoConfiguration"  to get how does
+// @EnableConfigurationProperties
+
+// @ConditionalOnClass => will auto config if the dependency classes present on class path
+
+// @ConditionalOnMissBean() => will auto config if the missing the bean in IOC container
