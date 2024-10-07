@@ -1,4 +1,4 @@
-package dev.ningli.content_calendar.Utils;
+package dev.ningli.content_calendar.JavaFoundations;
 
 import dev.ningli.content_calendar.Content;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package dev.ningli.content_calendar.Utils;
+package dev.ningli.content_calendar.JavaFoundations;
 
 public class VarArgs {
 
