@@ -8,11 +8,13 @@ import dev.ningli.content_calendar.Student.entity.StudentRecord;
 import dev.ningli.content_calendar.Student.exception.StudentNotFoundException;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 public class StudentController {
 
     private final LoadCustomConfigService loadCustomConfigService;

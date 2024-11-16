@@ -1,4 +1,4 @@
-package dev.ningli.content_calendar.PostWithHttpInterface;
+package dev.ningli.content_calendar.Https.GetHttpInterface;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

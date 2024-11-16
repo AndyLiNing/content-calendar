@@ -53,3 +53,7 @@ For example, if your class is Print,
 then Print.class is an object that represents the class Print on runtime. 
 It is the same object that is returned by the getClass() method of any (direct) instance of Print.
 ```
+
+
+--runOnChange:true
+--validCheckSum: 9:43808f3a0df83ef94a3eb289ca15d0a4

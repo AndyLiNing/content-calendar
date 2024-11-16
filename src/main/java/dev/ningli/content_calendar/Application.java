@@ -1,6 +1,7 @@
 package dev.ningli.content_calendar;
 
 import dev.ningli.content_calendar.AutoConfigExample.PrintBanner;
+import dev.ningli.content_calendar.JavaFoundations.Thread.ThreadFoundation;
 import dev.ningli.content_calendar.JsonLoader.Loader;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +15,9 @@ public class Application implements CommandLineRunner {
 	private final List<Content> a = new ArrayList<>();
 
 	public static void main(String[] args) {
+		System.setProperty("jdk.httpclient.HttpClient.log", "all");
 		SpringApplication.run(Application.class, args);
+		ThreadFoundation.printThread();
 	}
 
 	@Override

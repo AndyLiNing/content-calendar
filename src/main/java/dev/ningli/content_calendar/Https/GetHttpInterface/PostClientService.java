@@ -1,4 +1,4 @@
-package dev.ningli.content_calendar.PostWithHttpInterface;
+package dev.ningli.content_calendar.Https.GetHttpInterface;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;

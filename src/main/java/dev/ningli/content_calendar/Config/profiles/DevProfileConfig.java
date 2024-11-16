@@ -9,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("file:${SOURCES_DIR}/dev/${spring.application.name}/application.properties")
 @PropertySource("file:${SOURCES_DIR}/dev/common.properties")
 @PropertySource("file:${SOURCES_DIR}/dev/datasource.properties")
+@PropertySource("file:${SOURCES_DIR}/dev/liquibase.properties")
 @PropertySource("file:${SOURCES_DIR}/dev/log.properties")
 @PropertySource("file:${SOURCES_DIR}/dev/email.properties")
 @PropertySource("file:${SOURCES_DIR}/dev/oauth2.properties")
