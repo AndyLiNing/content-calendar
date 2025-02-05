@@ -1,8 +1,7 @@
 package dev.ningli.content_calendar;
 
 import dev.ningli.content_calendar.AutoConfigExample.PrintBanner;
-import dev.ningli.content_calendar.JavaFoundations.Thread.ThreadFoundation;
-import dev.ningli.content_calendar.JsonLoader.Loader;
+import dev.ningli.content_calendar.JavaFoundations.ClassesLoader.Parent;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,14 +13,16 @@ import java.util.*;
 public class Application implements CommandLineRunner {
 	private final List<Content> a = new ArrayList<>();
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		System.setProperty("jdk.httpclient.HttpClient.log", "all");
 		SpringApplication.run(Application.class, args);
-		ThreadFoundation.printThread();
+		new Parent("parent");
+		// ThreadFoundation.printThread();
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		System.out.println("main implement CommandLineRunner");
 		// Loader jl = new Loader();
 		// jl.loadNonStaticData().forEach((System.out::println));
 	}
@@ -37,9 +38,4 @@ public class Application implements CommandLineRunner {
 	private Optional<Content> findById(Integer id) {
 		return a.stream().filter(v -> v.id().equals(1)).findFirst();
 	}
-
-
-
-
-
 }
