@@ -43,11 +43,11 @@ public class Application implements CommandLineRunner {
 	@Bean
 	CommandLineRunner printBeans (ApplicationContext applicationContext) {
 		return args -> {
-			System.out.println("************************** BEANS **************************");
+			System.out.println("************************** BEANS START **************************");
 			for (String beans : applicationContext.getBeanDefinitionNames()) {
 				System.out.println(beans);
 			}
-			System.out.println("************************** BEANS **************************");
+			System.out.println("************************** BEANS END  **************************");
 		};
 	}
 
