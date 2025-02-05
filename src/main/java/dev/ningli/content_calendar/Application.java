@@ -5,17 +5,20 @@ import dev.ningli.content_calendar.JavaFoundations.ClassesLoader.Parent;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.util.*;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
-	private final List<Content> a = new ArrayList<>();
+	private final List<Content> optionalContents = new ArrayList<>();
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		System.setProperty("jdk.httpclient.HttpClient.log", "all");
-		SpringApplication.run(Application.class, args);
+		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(Application.class, args);
+
 		new Parent("parent");
 		// ThreadFoundation.printThread();
 	}
@@ -27,15 +30,28 @@ public class Application implements CommandLineRunner {
 		// jl.loadNonStaticData().forEach((System.out::println));
 	}
 
+	// Auto config
 	@Bean
-	CommandLineRunner runner ( PrintBanner printBanner ) {
+	CommandLineRunner runner (PrintBanner printBanner) {
 		return args -> {
 			System.out.println("Bean CommandLineRunner");
 			printBanner.printer();
 		};
 	}
 
+	// Print beans
+	@Bean
+	CommandLineRunner printBeans (ApplicationContext applicationContext) {
+		return args -> {
+			System.out.println("************************** BEANS **************************");
+			for (String beans : applicationContext.getBeanDefinitionNames()) {
+				System.out.println(beans);
+			}
+			System.out.println("************************** BEANS **************************");
+		};
+	}
+
 	private Optional<Content> findById(Integer id) {
-		return a.stream().filter(v -> v.id().equals(1)).findFirst();
+		return optionalContents.stream().filter(v -> v.id().equals(1)).findFirst();
 	}
 }
