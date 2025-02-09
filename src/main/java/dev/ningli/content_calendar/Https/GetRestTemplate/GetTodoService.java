@@ -10,6 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+//     restTemplateBuilder = restTemplateBuilderConfigurer
+//                .configure(new RestTemplateBuilder())
+//                .basicAuthentication("", "")
+//                .uriTemplateHandler(new DefaultUriBuilderFactory("https://jsonplaceholder.typicode.com/todos") {
+//        });
+
 @Service
 public class GetTodoService {
 

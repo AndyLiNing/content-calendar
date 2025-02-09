@@ -1,0 +1,18 @@
+# FRONT_END
+
+# 1, Generate private key and certification for DEV front end server
+openssl req -new -x509 -newkey rsa:2048 -sha256 -nodes -keyout localhost.key -days 3560 -out localhost.crt -config certificate.cnf
+
+
+
+
+# BACK_END
+# 1, Generate PKCS12 certification for backend server
+keytool -genkeypair -alias DevAndyNingKey -keyalg RSA -keypass password -storepass password -keystore DevAndyNingKeyStore -validity 3650
+keytool -export -alias DevAndyNingKey -keystore DevAndyNingKeyStore -storepass password -rfc -file DevAndyNing.crt
+
+# config servlet container for SSL
+server.ssl.key-store-type=PKCS12
+server.ssl.key-store=DevAndyNingKey.p12
+server.ssl.key-store-password=password
+server.ssl.key-alias=DevAndyNingKey
