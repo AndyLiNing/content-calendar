@@ -14,7 +14,7 @@ public interface PostClientService {
     List<Post> getPosts();
 
 
-    // comments?postId=1
+//    comments?postId=1
 //    @GetExchange("/comments")
 //    List<Comment> getCommentPost(@RequestParam(name = "postId") Integer id);
 
