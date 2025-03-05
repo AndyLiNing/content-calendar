@@ -82,7 +82,8 @@ public class SecurityConfig {
                 // disable Cross Site Request Forgery (CSRF)
                 // in general, not required for stateless REST APIs that use POST, PUT, DELETE and/or PATCH
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(configurer ->configurer.requestMatchers("/api/**").permitAll());
+                .authorizeHttpRequests(configurer ->configurer
+                        .requestMatchers("/api/**").permitAll());
 
         return httpSecurity.build();
     }
