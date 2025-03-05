@@ -3,9 +3,6 @@ package dev.ningli.content_calendar.UnitTest.MVC;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.ningli.content_calendar.AutoConfigExample.PrintBanner;
 import dev.ningli.content_calendar.Security.SecurityConfig;
-import dev.ningli.content_calendar.UnitTest.MVC.Post;
-import dev.ningli.content_calendar.UnitTest.MVC.PostService;
-import dev.ningli.content_calendar.UnitTest.MVC.UnitTestPostController;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -14,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -22,7 +18,6 @@ import javax.sql.DataSource;
 
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
