@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 
@@ -34,6 +36,14 @@ public class PostService {
         return restClient
                 .post()
                 .uri("/posts")
+                .body(post)
+                .retrieve()
+                .toEntity(Post.class);
+    }
+
+    public ResponseEntity<Post> updatePost(int id, Post post) {
+        return restClient.put()
+                .uri("/posts/" + id)
                 .body(post)
                 .retrieve()
                 .toEntity(Post.class);

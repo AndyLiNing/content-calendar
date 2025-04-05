@@ -1,10 +1,12 @@
 package dev.ningli.content_calendar.UnitTest.MVC;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.ningli.content_calendar.AutoConfigExample.PrintBanner;
 import dev.ningli.content_calendar.Security.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.ArgumentMatcher;
 import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -21,8 +23,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(UnitTestPostController.class)
@@ -50,6 +51,33 @@ class UnitTestPostControllerTest {
     ArgumentCaptor<Post> createPostCaptor;
 
     @Test
+    void should_create_post() throws Exception {
+        // GIVEN
+        var postRequestDTO = new Post(12, null, "first Post", "first Post Body");
+        var postResponseDTO = new Post(12, 1, "first Post", "first Post Body");
+
+        // WHEN
+        when(postService.createPost(createPostCaptor.capture()))
+                .thenReturn(ResponseEntity.ok(postResponseDTO));
+
+        // THEN
+        mockMvc.perform(post("/api/posts")
+                        .content(objectMapper.writeValueAsString(postRequestDTO))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userId", is(12)))
+                .andExpect(jsonPath("$.title", is("first Post")));
+
+        verify(postService, times(1)).createPost(any(Post.class));
+
+        assertEquals(createPostCaptor.getValue().body(), postRequestDTO.body());
+        assertEquals(createPostCaptor.getValue().title(), postRequestDTO.title());
+        assertEquals(createPostCaptor.getValue(), postRequestDTO);
+
+    }
+
+    @Test
     void should_get_all_posts() throws Exception {
         // GIVEN
         var posts = List.of(new Post(1, 1, "", "What is 1"),
@@ -73,29 +101,25 @@ class UnitTestPostControllerTest {
     }
 
     @Test
-    void should_create_post() throws Exception {
+    void should_update_post() throws Exception {
         // GIVEN
-        var postRequestDTO = new Post(12, null, "first Post", "first Post Body");
-        var postResponseDTO = new Post(12, 1, "first Post", "first Post Body");
+        var postRequestDTO = new Post(1, 12, "old title", "old body");
+        var postResponseDTO = new Post(1, 12, "new title", "new body");
+        var id = ArgumentCaptor.forClass(Integer.class);
+        var postArgumentCaptor  = ArgumentCaptor.forClass(Post.class);
 
         // WHEN
-        when(postService.createPost(createPostCaptor.capture()))
-                .thenReturn(ResponseEntity.ok(postResponseDTO));
+        when(postService.updatePost(id.capture(), postArgumentCaptor.capture())).thenReturn(ResponseEntity.ok(postResponseDTO));
 
         // THEN
-        mockMvc.perform(post("/api/posts")
+        mockMvc.perform(put("/api/posts/" + 12)
+                        .accept(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(postRequestDTO))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        )
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userId", is(12)))
-                .andExpect(jsonPath("$.title", is("first Post")));
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
 
-        verify(postService, times(1)).createPost(any(Post.class));
-
-        assertEquals(createPostCaptor.getValue().body(), postRequestDTO.body());
-        assertEquals(createPostCaptor.getValue().title(), postRequestDTO.title());
-        assertEquals(createPostCaptor.getValue(), postRequestDTO);
+        assertEquals(id.getValue(), 12);
+        assertEquals(postArgumentCaptor.getValue(),postRequestDTO);
 
     }
 

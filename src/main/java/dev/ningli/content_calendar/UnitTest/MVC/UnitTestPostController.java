@@ -3,10 +3,7 @@ package dev.ningli.content_calendar.UnitTest.MVC;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +30,11 @@ public class UnitTestPostController {
         LOGGER.info(post.toString());
         return post;
     }
+
+    @PutMapping("/api/posts/{id}")
+    public ResponseEntity<Post> updatePostById(@PathVariable("id") int id, @RequestBody Post body) {
+        return postService.updatePost(id, body);
+    }
+
 
 }
