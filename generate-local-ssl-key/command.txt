@@ -16,3 +16,4 @@ server.ssl.key-store-type=PKCS12
 server.ssl.key-store=DevAndyNingKey.p12
 server.ssl.key-store-password=password
 server.ssl.key-alias=DevAndyNingKey
+server.ssl.enabled=true
