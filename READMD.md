@@ -57,3 +57,5 @@ It is the same object that is returned by the getClass() method of any (direct) 
 
 --runOnChange:true
 --validCheckSum: 9:43808f3a0df83ef94a3eb289ca15d0a4
+
+test
